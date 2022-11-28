@@ -12,8 +12,11 @@ public class Employee {
 	@Id
 	@GeneratedValue
 	private int id;
-	private String name;
-	private int age;
+	private String eName;
+	private String eEmail;
+	private String ePhone;
+	private String eAddress;
+	private String eCity;
 	
 	public int getId() {
 		return id;
@@ -21,18 +24,35 @@ public class Employee {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String geteName() {
+		return eName;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void seteName(String eName) {
+		this.eName = eName;
 	}
-	public int getAge() {
-		return age;
+	public String geteEmail() {
+		return eEmail;
 	}
-	public void setAge(int age) {
-		this.age = age;
+	public void seteEmail(String eEmail) {
+		this.eEmail = eEmail;
 	}
-
+	public String getePhone() {
+		return ePhone;
+	}
+	public void setePhone(String ePhone) {
+		this.ePhone = ePhone;
+	}
+	public String geteAddress() {
+		return eAddress;
+	}
+	public void seteAddress(String eAdress) {
+		this.eAddress = eAdress;
+	}
+	public String geteCity() {
+		return eCity;
+	}
+	public void seteCity(String eCity) {
+		this.eCity = eCity;
+	}
 
 }
