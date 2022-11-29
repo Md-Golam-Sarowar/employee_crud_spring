@@ -1,5 +1,10 @@
 package com.project.CRUD.service;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,17 +22,46 @@ public class EmployeeService {
 		return employeeRepo.save(emp);
 	}
 	
-	public void delete(int id)
+	public List<Employee> getEmployeeList()
 	{
-		employeeRepo.deleteById(id);
+		List<Employee> employeesList = new ArrayList<Employee>();
+		Iterator<Employee> employees = employeeRepo.findAll().iterator();
+		
+		while(employees.hasNext())
+		{
+			employeesList.add(employees.next());
+		}
+		
+		return employeesList;
 	}
-
-	public EmployeeRepository getEmployeeRepo() {
-		return employeeRepo;
+	
+	public Employee delete(int id)
+	{
+		
+		if(employeeRepo.existsById(id) == true)
+		{
+			Employee employee = employeeRepo.findById(id).get();
+			employeeRepo.deleteById(id);
+			return employee;
+		}
+		else
+		{
+			return null;
+		}
 	}
-
-	public void setEmployeeRepo(EmployeeRepository employeeRepo) {
-		this.employeeRepo = employeeRepo;
+	
+	public Employee getById(int id)
+	{
+		
+		if(employeeRepo.existsById(id) == true)
+		{
+			Employee employee = employeeRepo.findById(id).get();
+			return employee;
+		}
+		else
+		{
+			return null;
+		}
 	}
 	
 	
