@@ -13,56 +13,59 @@ import com.project.CRUD.repository.EmployeeRepository;
 
 @Service
 public class EmployeeService {
-	
+
 	@Autowired
 	private EmployeeRepository employeeRepo;
-	
-	public Employee save(Employee emp)
-	{
+
+	public Employee save(Employee emp) {
 		return employeeRepo.save(emp);
 	}
-	
-	public List<Employee> getEmployeeList()
-	{
+
+	public List<Employee> getEmployeeList() {
 		List<Employee> employeesList = new ArrayList<Employee>();
 		Iterator<Employee> employees = employeeRepo.findAll().iterator();
-		
-		while(employees.hasNext())
-		{
+
+		while (employees.hasNext()) {
 			employeesList.add(employees.next());
 		}
-		
+
 		return employeesList;
 	}
-	
-	public Employee delete(int id)
-	{
-		
-		if(employeeRepo.existsById(id) == true)
-		{
+
+	public Employee delete(int id) {
+
+		if (employeeRepo.existsById(id) == true) {
 			Employee employee = employeeRepo.findById(id).get();
 			employeeRepo.deleteById(id);
 			return employee;
-		}
-		else
-		{
+		} else {
 			return null;
 		}
 	}
-	
-	public Employee getById(int id)
-	{
-		
-		if(employeeRepo.existsById(id) == true)
-		{
+
+	public Employee getById(int id) {
+
+		if (employeeRepo.existsById(id) == true) {
 			Employee employee = employeeRepo.findById(id).get();
 			return employee;
-		}
-		else
-		{
+		} else {
 			return null;
 		}
 	}
-	
-	
+
+	public Employee updateEmployee(Employee employee, int id) {
+		Employee emp = employeeRepo.findById(id).get();
+		emp.setId(emp.getId());
+		emp.seteName(employee.geteName());
+		emp.seteAddress(employee.geteAddress());
+		emp.seteEmail(employee.geteEmail());
+		emp.setePhone(employee.getePhone());
+		emp.seteCity(employee.geteCity());
+
+		employeeRepo.save(emp);
+
+		return emp;
+
+	}
+
 }
